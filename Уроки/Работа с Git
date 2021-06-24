@@ -1,0 +1,52 @@
+GIT
+
+git init
+git config --global user.name "Leesheronyx"
+git config --global user.email Leesheronyx@gmail.com
+
+git config --local user.name "Leesheronyx"
+git config --local user.email Leesheronyx@gmail.com
+
+существует 3 состояния файла в гите
+1) файлы просто созданы 
+2) когда гит следит за определенными файлами
+3) когда гит создал контрольную точку. Которую можно вернуться и посмотреть какие были изменения, как работал проект над данной котрольной точке и т.д. Оно ещё по другому называется КОМИТ
+
+1) Состояние Как посмотреть какой статус у моего репозитория?
+git status  Это и есть 1ое Состояние файла, когда созданы.
+
+2) Состояние git add -A - Следит за файлами всеми, чтобы добавить опеределенный файл, нужно написать например: git add main.css
+
+3) Состояние git commit -a -m"first commit"
+
+git log - Логи коммитов которые были
+
+Создать репозиторий 
+…or create a new repository on the command line
+echo "# testing" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/Leesheronyx/testing.git
+git push -u origin main
+                
+…or push an existing repository from the command line
+
+git remote add origin https://github.com/Leesheronyx/test.git
+git branch -M main
+git push -u origin main
+…or import code from another repository
+You can initialize this repository with code from a Subversion, Mercurial, or TFS project.
+
+1)git remote add origin https://github.com/Leesheronyx/testing.git - Добавляем удаленный репозиторий
+2)git branch -M main
+3)git push -u origin main
+
+
+Как скопировать из репозитория в свою новую папку WORK
+1)git clone https://github.com/Leesheronyx/testing.git - дальше нужно указать название папки в которой это всё будет сохраняться например 
+git clone https://github.com/Leesheronyx/testing.git project_2
+
+Как скопировать файлы измененные на работе, дома?
+git pull
