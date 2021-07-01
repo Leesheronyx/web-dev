@@ -76,16 +76,6 @@ function detectPersonalLevel() {
 }
 // detectPersonalLevel();
 
-function writeYourGenres() {
-    for (let i = 1; i <= 3; i++) {
-        personalMovieDB.genres[i - 1] = prompt(`Ваш любимый жанр под номером ${i}`);
-        // let a = prompt(`Ваш любимый жанр под номером ${i}`);
-        // personalMovieDB.genres[i - 1] = a;
-
-    }
-}
-// writeYourGenres();
-// console.log(personalMovieDB);
 
 
 function showMyDB(hidden) {
@@ -113,3 +103,14 @@ showMyDB(personalMovieDB.privat);
 //     }
 // }
 // showMyDB();
+
+function writeYourGenres() {
+    for (let i = 1; i <= 3; i++) {
+        personalMovieDB.genres[i - 1] = prompt(`Ваш любимый жанр под номером ${i}`);
+        // let a = prompt(`Ваш любимый жанр под номером ${i}`);
+        // personalMovieDB.genres[i - 1] = a;
+
+    }
+}
+// writeYourGenres();
+// console.log(personalMovieDB);
