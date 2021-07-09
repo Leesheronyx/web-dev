@@ -164,7 +164,7 @@ delete options.name; - удалить свойство объекта
 перебрать все свой-ва объекта.
 for in
 for (let key in options) { - key будет показано name,width,height и т.д.
-    console.log(`Свойство ${key} имеет значение ${options[key]}`); -${options[key] значение ключа test,1024,1024
+    console.log(`Свойство ${key} имеет значение ${options[key]}`); -${options[key] значение ключа test,1024
 }
 
 перебрать все свой-ва объекта, если есть внутри объекта, объект.
@@ -202,8 +202,6 @@ options.makeTest(); - увидим в консоле Test.
 const{border, bg} = options.colors; Мы вытащили кусочки(свойств)в котором находятся во вложенном объекте в качестве отдельной переменной.
 console.log(border);
 
-
-
 Массивы и псевдоклассы.
 
 const arr = [1, 2, 3, 4, 5];
@@ -212,17 +210,17 @@ arr.pop(); - Удаляет последний элемент с массива 
 arr.push(10); - добавляет в конец массива элемент;
 
 Перебор массива c помощью Цикла
-for(let i = 0; i < arr.length; i++) {
-    console.log(arr[i])
+1)for(let i = 0; i < arr.length; i++) {
+    console.log(arr[i]);
 }
 
 Конструкция перебора for of
-for(let value of arr) {
+2)for(let value of arr) {
     console.log(value);
 }
 
 Метод массива 
-arr.forEach(function(item, i, arr) {        - позволяет гибко нам перебрать опять же все элементы, которые находятся внутри массива
+3)arr.forEach(function(item, i, arr) {        - позволяет гибко нам перебрать опять же все элементы, которые находятся внутри массива
     console(`${i}: ${item} внутри массива ${arr}`)
 }); 
 
