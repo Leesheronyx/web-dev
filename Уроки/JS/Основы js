@@ -255,6 +255,8 @@ console.log(products.join('; '));
 
 Псевомассивы. Когда мы работаем со страницей, мы будем получать пседомассивы.
 
+
+
 Передача по ссылке или по значению, Spread оператор (ES6-ES9)
 const obj = {
     a: 5,
@@ -295,3 +297,80 @@ const add = {
     
 };
 console.log(Object.assign(newNumbers, add)) - первым аргуметом мы передаём тот объект в который мы хотим всё поместить, а второй аргумент тот объект в который мы помещаем
+
+const clone = Object.assign({}, add); - создать копию объекта {} - пустой объект
+clone.d = 20;
+
+console.log(add); {d; 17, e: 20};
+console.log(clone); {d: 20, e: 20};
+
+Метод создании копии массива.
+const oldArray = ['a', 'b', 'c'];
+const newArray = oldArray.slice(); - метод, который позволяет просто скопировать старый массив
+newArray[1] = 'asdasd'; - поменяли значение 2го элемента
+console.log(newArray); ['a', 'asdasd', 'c'];
+console.log(oldArray); ['a', 'b', 'c'];
+
+Новые методы ES6 ES8 по созданию поверхностной копий. Спрэт(разворота) - оператора
+Спрэт оператор - разворота. 
+const video = ['youtube', 'vimeo', 'rutube'],
+      blogs = ['wordpress', 'livejournal', 'blogger'],
+      internet = [...video, ...blogs, 'vk', 'facebook']; - вытащим элементы через запятую и они все будут помещаться все в переменную Internet.
+console.log(internet); ['youtube', 'vimeo', 'rutube', 'wordpress', 'livejournal', 'blogger', 'vk', 'facebook'];
+
+function log(a, b, c) {
+    console.log(a);
+    console.log(b);
+    console.log(c);
+}
+const num = [2,5,7]; - допустим этот массив пришёл из сервера
+log(..num); - этот массив разложится на 3 элемента как было выше. Эта функция запуститься с 3мя отдельными сущностями.
+2, 5, 7
+
+теперь можно не с помощью slice(); создать копию массива, а при помощи спрэт оператора 
+const array = ["a", "b"];
+const newAaray = [...array];
+
+Метод создании копий объектов при помощи спрэт(разворота) оператора
+const q = {
+    one: 1,
+    two: 2
+};
+const newObj = {...q};
+
+
+Основы ООП, прототипно-ориентированное наследование
+
+const soldier = {
+    health: 400,
+    armor: 100,
+    sayHello: function() {
+        console.log('hello');
+    } 
+};
+
+const jonh = {
+    health: 100
+};
+jonh.__proto__ = soldier; - устаревший формат прото - установили армор john
+console.log(jonh.armor); - 100 
+console.log(jonh.sayHello()); - hello
+
+
+1) Object.setPrototypeOf получать этот прототип 
+2) Object.create() - создавать объект с определенным прототипом
+3) устанавливать прототип
+
+1)Object.setPrototypeOf(john, soldier); - первым аргументом напишу, тот объект, которому хочу назначить прототип. а вторым объектом напишу тот объект прототип которого мы устанавливаем. 
+console.log(jonh.sayHello()); - hello
+2)const john = Object.create(soldier) - создать новый объект. Мы создаем новый объект John, который будет прототипно наследоваться от soldier(солдата). Новосозданный рядовой John, который ещё ничего не содержит, но уже при этом умеет делать всё, что Soldier(солдат).
+console.log(jonh.sayHello()); - hello
+3)
+
+
+
+
+
+
+
+
