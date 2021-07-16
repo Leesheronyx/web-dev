@@ -14,12 +14,6 @@
 
 'use strict';
 
-// Код возьмите из предыдущего домашнего задания
-
-
-
-
-
 const personalMovieDB = {
     count: 0,
     movies: {},
@@ -71,17 +65,31 @@ const personalMovieDB = {
         }
     },
     writeYourGenres: function () {
-        for (let i = 1; i <= 3; i++) {
-            let genre = personalMovieDB.genres;
-            if (personalMovieDB.genres == "" || personalMovieDB.genres == null) {
+        for (let i = 1; i < 2; i++) {
+            let genre = prompt(`Ваш любимый жанр под номером ${i}`);
+
+            if (genre === '' || genre == null) {
+                console.log('Вы ввели некорректные данные или не ввели их вовсе');
                 i--;
             } else {
-                personalMovieDB.genres[i - 1] = prompt(`Ваш любимый жанр под номером ${i}`);
+                personalMovieDB.genres[i - 1] = genre;
             }
-            genre.forEach(function (item, i, genre) {
-                console.log(`Любимый жанр ${i}: ${item} внутри массива ${genre}`);
-            });
-        }
-    }
 
+            // Альтернативный вариант из урока
+
+            // let genres = prompt(`Введите ваши любимые жанры через запятую`).toLowerCase();
+
+            // if (genres === '' || genres == null) {
+            //     console.log('Вы ввели некорректные данные или не ввели их вовсе');
+            //     i--;
+            // } else {
+            //     personalMovieDB.genres = genres.split(', ');
+            //     personalMovieDB.genres.sort();
+            // } 
+        }
+
+        personalMovieDB.genres.forEach((item, i) => {
+            console.log(`Любимый жанр ${i + 1} - это ${item}`);
+        });
+    }
 };
