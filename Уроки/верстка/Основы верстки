@@ -1,49 +1,118 @@
+
+
+
 файл для css 
 * {
-    box-sizing: border-box; /* делает чтоб везде было например 300px, а не 340px; */
-    margin: 0;
-    padding: 0;
+	box-sizing: border-box; /* делает чтоб везде было например 300px, а не 340px; */
+	margin: 0;
+	padding: 0;
 }
 
-Блочная модель CSS
+Урок Блочная модель CSS
 картинки являются строчными элементами display: inline; + ссылки тоже <a></a> Строчные тэги, элементы не действует на них margin top,botton,
 Тэг <p></p> является блочным элементом
 Как выровнить блочный элемент по центру по горизонтале? Например
 img {
-    display: block;
-    margin: 0 auto;
-    width: 500px;
+	display: block;
+	margin: 0 auto;
+	width: 500px;
 }
 
-Позиционирование элементов в CSS.
+Урок Позиционирование элементов в CSS.
 nav {
-    static, relative, absolite, fixed
-    position: static; - это стандартное
-    position: relative; - ничего не поменяется, нужно добавить left,right и т.д.
-    left: 130px; сдвинется на 130px на право
-    top: 150px; сдвинется вниз меню 
-    bottom: 150px; сдвинется вверх меню
-    bottom, top, right, left
+	static, relative, absolite, fixed, inherits
+	position: static; - это стандартное
+	position: relative; - ничего не поменяется, нужно добавить left,right и т.д.
+	left: 130px; сдвинется на 130px на право
+	top: 150px; сдвинется вниз меню 
+	bottom: 150px; сдвинется вверх меню
+	bottom, top, right, left
 
-    position: absolute; - это позиционирование одна из самых интересных, позволяет нам любой абсолютно элемент распологать в том месте, где нам хочется. При установке позиции абсолют, наш элемент как-бы выпадает из списка html. Он становится не попорядку, как мы указали в html, а именно там где мы укажем ему при помощи всех тех же 4х значений top,bottom,left,right. Теперь это работает немного по другому.
-    Например:
-    position: absolute;
-    left: 0;
-    top: 50px;
-    Position absolute работает только, если у его родителя есть Position: Reletive; Если нету Position: relative, то он будет в html странице гулять. Почему? Потому-что у тэга body стоит изначально position: relative; 
+	position: absolute; - это позиционирование одна из самых интересных, позволяет нам любой абсолютно элемент распологать в том месте, где нам хочется. При установке позиции абсолют, наш элемент как-бы выпадает из списка html. Он становится не попорядку, как мы указали в html, а именно там где мы укажем ему при помощи всех тех же 4х значений top,bottom,left,right. Теперь это работает немного по другому.
+	Например:
+	position: absolute;
+	left: 0;
+	top: 50px;
+	Position absolute работает только, если у его родителя есть Position: Reletive; Если нету Position: relative, то он будет в html странице гулять. Почему? Потому-что у тэга body стоит изначально position: relative; 
 }
 .example {
-    position: relative;
+	position: relative;
 }
-nav {
-    position: fixed; - скролл по странице, не действует на position: relative, ему вообще всё равно. Очень часто применяется для меню на вверхнем экране, для различных виджетов или модельные окна.
 
-    position: inherits; мы берём и наследуем от нашего родителя свойство, в данном случае будет position:relative, потому что родитель .example. Используется часто для наследование родительских свойств.
+
+nav {
+	position: fixed; - скролл по странице, не действует на position: relative, ему вообще всё равно. Очень часто применяется для меню на вверхнем экране, для различных виджетов или модельные окна.
+
+	position: inherits; мы берём и наследуем от нашего родителя свойство, в данном случае будет position:relative, потому что родитель .example. Используется часто для наследование родительских свойств.
 
 }
 
 Выравнивание элементов по вертикали
 
 vertical-align: top; - работает только, если элемент display: inline-block;
-vertical-align: center; - выравнивание по центру  
+vertical-align: middle; - выравнивание по центру  
+
+
+Flex-Box
+.my-flex-container { - нужно родителю задать display: flex; тогда расположаться элементы в ширину
+	display: flex;
+	justify-content: center; - выравнивание элементов по центру. justify-content - выравнивание элементы по главной Оси
+	align-items: center; - выравнивание по центру элементов. align-items - выравнивание элементы по поперечной  
+	flex-wrap: wrap; если не хватает место в строке, чтоб часть элементов сместилось ниже
+	height: 450px;
+}
+
+Как убрать точки из списка ul>li>a?
+Обратиться к ul и написать list-style-type: none; 
+
+Ссылка по номеру телефона - <a href="tel:84957970988" class="subheader_phone">8 495 797 09 88</a>
+
+Прозрачность фона - background-color: rgba(0,0,0, .6);
+Задать задний фон - background: url('../img/bg/main_bg.jpg') center center/cover no-repeat; Sass 			background: url('../img/bg/mobile_screen_1.jpg') center (center / cover) no-repeat
+
+Как убрать обводку кнопки синего цвета и т.д. 
+outine: none;
+
+Выровнить элементы при помощи position. У родителя сделать position: relative;
+&_plus
+	position: absolute
+	bottom: 35px
+	left: 50%
+	transform: translateX(-50%)
+
+Псевдоклассы и Псевдоэлементы
+1)Псевдоклассы hover, active, focus
+button
+	width: 100px
+	height: 100px
+	background-color: red
+	cursor: pointer
+	transition: 0.5s all - задаём время анимации
+	&:hover  - при наведении меняет цвет 
+		background-color: pink
+		color: #fff
+	&:active	- при клике и зажимаем меняет цвет
+		background-color: orange 
+	&:focus 	- при нажатии на кнопку, становится активной и цвет поменяется
+		background-color: grey
+.circle 
+	border-radius: 100%
+	width: 100px
+	height: 100px
+	&:nth-child(2n)		- каждый второй кругляшок покрасится в красный цвет
+		background-color: red 
+
+2)Псевдоэлементы before,after
+.circle 
+	border-radius: 100%
+	width: 100px
+	height: 100px
+	&:nth-child(2n)		- каждый второй кругляшок покрасится в красный цвет
+		background-color: red
+	&:before
+		content: '' - обязательно должно быть
+		display: block
+		height: 2px
+		background-color: black
+
 
