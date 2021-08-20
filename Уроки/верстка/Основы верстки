@@ -1,4 +1,16 @@
+Как убрать точки из списка ul>li>a?
+Обратиться к ul и написать list-style-type: none; 
 
+Как убрать нижнее подчеркивание у ссылок 
+a {
+	text-decoration: none;
+}
+
+Как убрать обводку кнопки синего цвета и т.д. 
+
+outline: none;
+
+&times; - cделать крестик
 
 Как сделать position: fixed ?
 header
@@ -71,13 +83,8 @@ Flex-Box
 	height: 450px;
 }
 
-Как убрать точки из списка ul>li>a?
-Обратиться к ul и написать list-style-type: none; 
 
-Как убрать нижнее подчеркивание у ссылок 
-a {
-	text-decoration: none;
-}
+
 
 Ссылка по номеру телефона - <a href="tel:84957970988" class="subheader_phone">8 495 797 09 88</a>
 
@@ -85,9 +92,6 @@ a {
 Задать задний фон - background: url('../img/bg/main_bg.jpg') center center/cover no-repeat; Sass 			background: url('../img/bg/mobile_screen_1.jpg') center (center / cover) no-repeat
 
 
-Как убрать обводку кнопки синего цвета и т.д. 
-
-outline: none;
 
 Выровнить элементы при помощи position. У родителя сделать position: relative;
 &_plus

@@ -302,3 +302,91 @@ nav
     padding: 68px 0 84px 0
     &_block
         margin: 33px 0
+        &nmb
+            margin-bottom: 0px
+    &_title
+        color: #1ca8c3
+        font-size: 22px
+        font-weight: 400
+    &_list
+        list-style-type: none
+        padding-left: 50px
+        margin-top: 22px
+        li
+            position: relative
+            font-size: 17px
+            font-weight: 300
+            line-height: 24px
+            margin-bottom: 10px
+            &:before
+                content: ''
+                display: block
+                position: absolute
+                left: -32px
+                top: 3px
+                width: 21px
+                height: 20px
+                background: url('../icons/check_blue.png') center (center / cover) no-repeat
+    &_descr
+        font-style: 17px
+        color: #1ca8c3
+        font-weight: 300
+    .warning
+        .require_title
+            color: $second-color
+        .require_list
+            li
+                &:before
+                    background: url('../icons/check_red.png') center (center / cover) no-repeat
+
+.world
+    padding: 49px 0 49px 0
+    background: url('../img/bg/world_bg.jpg') center (center / cover) no-repeat
+    &_label
+        background-color: #ffffff
+        color: #070716
+    &_title
+        color: #ffffff
+    &_subtitle
+        color: #ffffff
+    &_view
+        display: block
+        margin-top: 654px
+        color: #1fbad6
+        font-size: 15px
+        font-weight: 400
+        text-align: center
+        text-transform: uppercase
+.footer
+    padding: 14px 0 31px 0
+    &_stick
+        margin: 0 auto
+        width: 299px
+        height: 4px
+        background-color: $main-color
+    &_blocks
+        margin-top: 33px
+    &_social
+      display: flex
+      justify-content: center
+      align-items: center
+      &_item
+        display: flex
+        justify-content: center
+        align-items: center
+        width: 32px
+        height: 32px
+        background-color: #070716
+        border-radius: 100%
+        text-decoration: none
+        i
+          color: #fff
+
+          
+
+
+
+
+
+
+
