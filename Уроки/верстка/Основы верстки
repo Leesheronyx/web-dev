@@ -1,3 +1,6 @@
+@media 768px-992px
+моб.версия от 576-768px
+
 Как убрать точки из списка ul>li>a?
 Обратиться к ul и написать list-style-type: none; 
 
@@ -136,3 +139,10 @@ button
 		background-color: black
 
 
+Форма
+<form class="feed-form" action="#">
+	<input name="name" required placeholder="Ваше имя" type="text">
+	<input name="phone" required placeholder="Ваш телефон" type="number">
+	<input name="email" required placeholder="Ваш E-mail" type="email">
+	<button>заказать кОНСУЛЬТАЦИЮ</button>
+</form>
