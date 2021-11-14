@@ -14,7 +14,9 @@ ssh aziz@127.0.0.1 -p 2222 - расшифровка. aziz - имя пользо�
 Заходим в обычный терм. от своего user, ни от server-demo. И создаём ssh ключ
 ssh-keygen - enter,enter нам нужно посмотреть файл /home/mifudza/.ssh/id_rsa.pub - открытый ключ он нам нужен. /home/mifudza/.ssh/id_rsa - закрытый ключ
 Делаем ключ - на нашей хостовой машине мы получаем наш публичный ключ на нормальном компе, а не виртуалке вводить команду cat ~/.ssh/id_rsa.pub
-и получаем публичный ключ ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDCkK6e3/48xNxPwwo95f+oQ+Wglbw60pxDSoSc3h3dCab2KehU8k+tibAsSOr6xyyE4PzGXNv2S7M7QAvf3kP5MnwWFBFTPQuWQgO/vKu755t0upV8VdelGmciT1ss0kX4RAjqoSJ+tY7dxZdcOqu9OQHblhlcs+XGuNaNLwvUKs8QTYXHULYb6UDlYYsOcdaXOZ76NYo5b+C8eimPLsT6Gqs5ma2BEh8nR2IAf/IWICNog+k1MbaRp+qbtZhzEehI85oiOJ7ji5d3vyo7OZvLJpoXQjWw94suchSEVsxABdOZtOA2WJyn9UtNPx6T+x+o31INfjiLZfnmqCL9vXicwA/kAfNGqzx3o2v6fRQVDWiXc6v+k4H122itmHSFhMdHHgBHuEcOUkZylCWiFCzJGALVW805SjsTaFdGA2UyB7KgzJETZTkZD7AqClNx1u6JP4DM6jsYMCom/6l0oUfJaFZuXv2kGKlzdG6qebOCn7JZx8Pmcwn4TjLoKJOk6N0= mifudza@DarkBox
+
+и получаем публичный ключ ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQD1S+DX/uh5IVgr8HCfw9T55YqdFlYQLj+0hIyxJ1kol/ETmSxhSdyWkbHsuN3ZIXEHYV8wTxvhJ0Y5cUrcD10bpUxWxoTSGSCRJ1lNVjQqi+86Kb/Ry5uLQsG9P6TlO4ieNpdAMctThLy5wYD/+qp5VrIoTE4BiO9/4vfnwS0yCwT7hyfQOnrdCIJNTWWt/Z2OBlBezyvuvKsgd9qluGydPK4h+ll+BtqekLoh1kZf2jD2N2QUNVNpzR8bmyjRSS9NLzVt4nGdCAA6qLYSlyhIEM4h+cNNT98ggC5QrwT9LHpf0vvqv4akT2l2CaAPHZUhcNeQW4X+u1okci+9FeDE7sQ5Em8vWtq+sMcr5aW0hhM98S6yzP1xP7B8HcoGBkoGhegBQsiT6E58oPaPXkPCiNkyBDFhkJC8zE+cnDKFJhYgTbxSe9tjsm95WGCFE0tW6AkWhEXLSm9/MSQKOkTs6BQvi1pPhJiT1VstAxg9gExV6WQ+n2jAJX2Ss+Aj1p0= mifudza@DarkBox
+
 
 Вводим на VBox mkdir ~/.ssh cd ~/.ssh/ nano authorized_keys - это файл, который для ssh обозначает те ключи, публичные ключи которые могут заходит без пароля у данного пользователя. Т.е. для demo-server не нужно вводить пароль после ssh aziz@127.0.0.1 -p 2222
 
@@ -85,3 +87,22 @@ docker logs mongodb > test.txt - сохранить логи, которые в�
 docker logs mongodb | grep ":97"> test-new.txt - создали файл с логами по определенным параметрам, которые мы ему задали в grep.
 
 Команды в контейнере
+docker exec -it mongo bash - заходим в интерактивный режим -it во внутрь контейнера mongo
+docker exec mongodb bash -c 'ls' - заходит в контейнер, но не внутрь как первый вариант
+docker exec mongo mongo --version > mongo.txt - сохранить оутпут(информацию о контейнере) в текстовой файл за пределами контейнера. первое mongo - означает имя контейнера, а второе, его настоящее называние
+docker exec mongo bash -c 'mongo --version > mongo2.txt' - оутпут(информацию о контейнере) в текстовой файл внутри контейнера 
+
+Image
+docker image --help - посмотреть команды
+docker images - посмотреть images(образы) это короткое от docker image ls
+docker pull nginx - pull позволяет выкачить образ, который лежит в dockerHube на локальной машине
+docker histoy mongo - посмотреть историю image
+docker inspect mongodb - посмотреть более детально всю информацию о контейнере или image
+docker image import --help - мы передаём архив, который из него делает image
+docker push --help - собранный локальный image для того, чтобы его потом скачать. позволяет отправить image 
+docker image ls - показывает все images
+docker image rm hello-world - удаляет image. Можно указать ID или Name
+чтобы удалить image, нужно удалить все контейнеры, которые на него ссылаются
+docker image prune - позволяет удалить все images у которых нету TAG(none).
+
+DockerFile
