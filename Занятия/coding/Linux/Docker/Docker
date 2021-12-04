@@ -1,0 +1,108 @@
+Установка Ubuntu-server на VirtualBox
+выделить 2гб для dockera + 20gb выделить для харда
+везде делаем done кроме (guided storage configurration) - нажмимаем TAB до Done и (SSH Setup) - поставить галочку на Install OpenSSH server
+
+Настройка сервера в хэдэрс режиме
+Переходим в настройки VBox, Сеть, Дополнительно, Проброс портов нажимаем - она позволяет нам прокинуть порт из вне внутрь нашей машины. 
+Нажимаем на плюсик зелёный, имя ssh, адрес хоста 127.0.0.1, порт хоста 2222, порт гостя 22. Порт гостя - это порт машины, а Адрес хоста - это порт нашего хоста. Т.е. как только мы будем стучатся ssh на порт 2222 он нас прокинет на ssh нормальный порт 22го гостевой машины.
+
+Перезапускаем серве
+Заходим в терминал
+ssh aziz@127.0.0.1 -p 2222 - расшифровка. aziz - имя пользователя, 127.0.0.1 это локал хост и порт 2222
+Пишем в терминале yes и пароль от сервака и мы уже на сервере
+Чтобы проще работать в дальнейшем с нашим сервером, нужно добавить наш публичный ключ по ssh.
+Заходим в обычный терм. от своего user, ни от server-demo. И создаём ssh ключ
+ssh-keygen - enter,enter нам нужно посмотреть файл /home/mifudza/.ssh/id_rsa.pub - открытый ключ он нам нужен. /home/mifudza/.ssh/id_rsa - закрытый ключ
+Делаем ключ - на нашей хостовой машине мы получаем наш публичный ключ на нормальном компе, а не виртуалке вводить команду cat ~/.ssh/id_rsa.pub
+
+и получаем публичный ключ ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQD1S+DX/uh5IVgr8HCfw9T55YqdFlYQLj+0hIyxJ1kol/ETmSxhSdyWkbHsuN3ZIXEHYV8wTxvhJ0Y5cUrcD10bpUxWxoTSGSCRJ1lNVjQqi+86Kb/Ry5uLQsG9P6TlO4ieNpdAMctThLy5wYD/+qp5VrIoTE4BiO9/4vfnwS0yCwT7hyfQOnrdCIJNTWWt/Z2OBlBezyvuvKsgd9qluGydPK4h+ll+BtqekLoh1kZf2jD2N2QUNVNpzR8bmyjRSS9NLzVt4nGdCAA6qLYSlyhIEM4h+cNNT98ggC5QrwT9LHpf0vvqv4akT2l2CaAPHZUhcNeQW4X+u1okci+9FeDE7sQ5Em8vWtq+sMcr5aW0hhM98S6yzP1xP7B8HcoGBkoGhegBQsiT6E58oPaPXkPCiNkyBDFhkJC8zE+cnDKFJhYgTbxSe9tjsm95WGCFE0tW6AkWhEXLSm9/MSQKOkTs6BQvi1pPhJiT1VstAxg9gExV6WQ+n2jAJX2Ss+Aj1p0= mifudza@DarkBox
+
+
+Вводим на VBox mkdir ~/.ssh cd ~/.ssh/ nano authorized_keys - это файл, который для ssh обозначает те ключи, публичные ключи которые могут заходит без пароля у данного пользователя. Т.е. для demo-server не нужно вводить пароль после ssh aziz@127.0.0.1 -p 2222
+
+Базовые команды для Линукс
+PWD - как определить где мы находимся в консоле
+ls -la- список файлов скрытых
+ctrl + R- найдёт конкретную команду, которую мы делали давно 
+cd apps/ - попадаем в папку
+cd .. - назад возвращает
+mkdir test - создать директорию
+rm file.jpeg - удалить файл
+rm -R test/ - удаляем директорию(папку)
+cp README.md README2.md - скопировать файл
+mv README2.md README3.md - переместить или переменовать файл
+cat README.md посмотреть содержание файла быстро, но в консоле
+tail -1 README.md- хвост вывести(последнию строку нашего файла)
+head -1 README.md - аналогично, только сверху первую строку
+less README.md - откроет наш файл, если он большой в неком подобии редактора, чтобы выйти ..Q
+cat README.md | grep "jest" - чейнит друг за другом. Например хотим взять какой-то файл и вытащит оттуда строку например слово jest Он выведет похожие строки с jestom
+find ./apps -name "main.ts"поиск по файлам. ./apps - ищем в этой папке -name что будем искать, мы хотим найти файл main.ts
+echo 1 - вывод в консоли, можно чейнить или перенаправлять оутпут echo 1 > a.txt - здесь мы написали текст и сохранили файл
+diff .apps/converter/src/main.ts .apps/api/src/main.ts сравнить два файла
+df- посмотреть заполниность диска
+sudo - root
+
+Установка докера
+https://docs.docker.com/engine/install/ubuntu/
+sudo apt-get update
+sudo apt-get install \
+    ca-certificates \
+    curl \
+    gnupg \
+    lsb-release
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
+sudo apt-get install docker-ce docker-ce-cli containerd.io
+sudo usermod -aG docker $USER
+docker run hello-world
+
+Команды dockera
+docker ps - показывает запущенный процесс 
+docker ps -a - запущенные контейнеры и остановленные 
+docker rm 5a56955cc46c - удалить контейнер. Можно удалять по Names или Container ID
+docker run --name my-mongo -d mongo --name- указываем имя, чтобы автоматом рандомное имя не попалось. d - означает, что мы с вами этот процесс отделяем от текущей процесса bash, mongo - сам контейнер 
+docker stop my-mongo - останавливает контейнер
+docker start my-mongo - запускает контейнер
+docker restart my-mongo - сперва остановится, а затем запуститься
+docker pause my-mongo - ставим на паузу
+docker unpause my-mongo - возобновляет контейнер
+docker kill my-mongo - убить процесс 
+docker container prune - удаляет все контейнеры, которые остановлены 
+docker rename elastic_almeida mongodb - переименовали контейнер на mongodb
+
+Логи и статистика работы контейнера
+docker stats - посмотреть статистику по всем запущенным контейнерам в реальном времени.
+docker inspect mongodb - посмотреть более детально всю информацию о контейнере или image
+docker inspect -f "{{.State.Status}}" mongodb - тоже самое, но выведет запущено или нет. Это пример, чтобы вытащить нужную информацию
+docker logs mongodb - посмотреть логи контейнера
+docker logs mongodb | grep "id" - вытащить из логов только нужное. | - оператор пайпа, то что выведиться в рамках этой команды мы дальше передадим в следующую команду. Т.е. мы вытащим все логи и передаём в функцию grep - функция grep позволяет нам вытащить куски и искать по нашему тексту и вытащить какую-то информацию. Например мы хотим вытащить всё где у нас содержится id
+docker logs mongodb | grep "id" -A 10 - дополнительный параметр, чтобы кроме самого нахождения мы могли с вами вытащить ещё дополнительно строки. -A 10 - мы вытащим всё, что будет всё афтер текущей строки. Т.е. 10 строк после текущей строки
+docker logs mongodb | grep "id" -B 10 - бефор вытащит 10 строк до найденной строки
+docker logs mongodb | grep "id" -m 2 - ограничет число выводов двумя. Тогда будут выведены две первые строки, которые встретим с этим словом
+docker logs mongodb -f - следим за логами в реальном времени, что произошло и т.д.
+docker logs mongodb > test.txt - сохранить логи, которые выводим в консоле в файл test.txt. просмотреть можно cat test.txt
+docker logs mongodb | grep ":97"> test-new.txt - создали файл с логами по определенным параметрам, которые мы ему задали в grep.
+
+Команды в контейнере
+docker exec -it mongo bash - заходим в интерактивный режим -it во внутрь контейнера mongo
+docker exec mongodb bash -c 'ls' - заходит в контейнер, но не внутрь как первый вариант
+docker exec mongo mongo --version > mongo.txt - сохранить оутпут(информацию о контейнере) в текстовой файл за пределами контейнера. первое mongo - означает имя контейнера, а второе, его настоящее называние
+docker exec mongo bash -c 'mongo --version > mongo2.txt' - оутпут(информацию о контейнере) в текстовой файл внутри контейнера 
+
+Image
+docker image --help - посмотреть команды
+docker images - посмотреть images(образы) это короткое от docker image ls
+docker pull nginx - pull позволяет выкачить образ, который лежит в dockerHube на локальной машине
+docker histoy mongo - посмотреть историю image
+docker inspect mongodb - посмотреть более детально всю информацию о контейнере или image
+docker image import --help - мы передаём архив, который из него делает image
+docker push --help - собранный локальный image для того, чтобы его потом скачать. позволяет отправить image 
+docker image ls - показывает все images
+docker image rm hello-world - удаляет image. Можно указать ID или Name
+чтобы удалить image, нужно удалить все контейнеры, которые на него ссылаются
+docker image prune - позволяет удалить все images у которых нету TAG(none).
+
+DockerFile
