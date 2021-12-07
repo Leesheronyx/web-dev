@@ -104,5 +104,16 @@ docker image ls - показывает все images
 docker image rm hello-world - удаляет image. Можно указать ID или Name
 чтобы удалить image, нужно удалить все контейнеры, которые на него ссылаются
 docker image prune - позволяет удалить все images у которых нету TAG(none).
+docker container prune - 
 
 DockerFile
+
+
+docker rm $(docker ps -aq) - удалить все containerЫ
+docker rmi -f $(docker images) - удалить все образы
+
+docker run -p 8080:80 -v ~/projects/docker.test:/app nginx 
+docker exec -it 4d17e85e957b bash - посмотреть что внутри докера
+docker run --name webapp 1.14-alpine - название для контейнера 
+
+
