@@ -109,6 +109,8 @@ docker container prune -
 DockerFile
 
 
+
+
 docker rm $(docker ps -aq) - удалить все containerЫ
 docker rmi -f $(docker images) - удалить все образы
 
