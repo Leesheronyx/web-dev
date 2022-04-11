@@ -1,0 +1,15 @@
+body {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+.main-text_subtitle {
+    font-weight: 400;
+    font-size: 25px;
+}
+.main-text_discr {
+    margin-top: 20px;
+    font-size: 20px;
+    
+}
+
