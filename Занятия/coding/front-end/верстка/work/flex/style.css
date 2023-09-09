@@ -1,0 +1,21 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.my-flex-container {
+    display: flex; 
+    justify-content: wrap; - когда забито всё в одну строку и нужно переместить вниз блоки.
+    flex-direction: column; - меняет главную ось, т.е. row на column
+    justify-content: space-between; - главная ось, можно влево, вправо, в центре сделать
+    align-items: center; поперечная ось, т.е. можно управлять вверх, вниз, центр
+    height: 450px;
+}
+
+.my-flex-block {
+    width: 150px;
+    height: 150px;
+    background-color: red;
+    text-align: center;
+    color: #fff;
+}
